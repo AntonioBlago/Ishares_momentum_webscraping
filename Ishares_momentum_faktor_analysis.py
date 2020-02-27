@@ -12,10 +12,8 @@ import pandas as pd
 import csv
 import time
 
-#search_m="https://www.ishares.com/de/privatanleger/de/produkte/270051/ishares-msci-world-momentum-factor-ucits-etf?switchLocale=y&siteEntryPassthrough=true"
 search_m="https://www.ishares.com/de/privatanleger/de/produkte/270051/ishares-msci-world-momentum-factor-ucits-etf/1478358465952.ajax?fileType=csv&fileName=IS3R_holdings&dataType=fund"
-# List with google queries I want to make
-#desired_google_queries = ["LU0094547139", "DE0009789727", "DE0009752303", "LU1883318740"]
+
 list_funds=[]
 
 
@@ -82,9 +80,7 @@ for index, row in Ishares_momentum.iterrows():
             html2 = response2.read()
             # Parsing response
             soup2= BeautifulSoup(html2, 'html.parser')
-            
-            #mydivs = soup.find_all("div", {"class": "icon icon--cd_star-full-16 icon--size-16"})
-            
+                        
         
                 
             mydivs = soup2.find_all("div", {"class": "table__container--scroll"})
@@ -229,16 +225,6 @@ Ishares_momentum_new2=pd.merge(Ishares_momentum_new,performance2,how="outer",on=
 
 Ishares_momentum_new2["KGVe"]=Ishares_momentum_new2["KGVe"].replace("--",0)
 Ishares_momentum_new2["DIVe"]=Ishares_momentum_new2["DIVe"].replace("--",0)
-
-# Ishares_momentum_new2["KGVe"]=Ishares_momentum_new2["KGVe"].apply(lambda x: x.int.replace(',','.'))
-# Ishares_momentum_new2["DIVe"]=Ishares_momentum_new2["DIVe"].apply(lambda x: x.int.replace(',','.'))
-
-# Ishares_momentum_new2["KGVe"]=Ishares_momentum_new2["KGVe"].astype(float)
-# Ishares_momentum_new2["DIVe"]=Ishares_momentum_new2["DIVe"].astype(float)
-
-
-#Ishares_momentum_new2=Ishares_momentum_new2.drop([369,370,371,372,373])
-
 
 
             
